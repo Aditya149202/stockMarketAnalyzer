@@ -1,0 +1,9 @@
+{
+  "short_name": "Stock Analyzer",
+  "name": "Stock Market Analyzer",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#121212",
+  "icons": []
+}

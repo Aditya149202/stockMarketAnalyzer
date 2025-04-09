@@ -173,6 +173,7 @@ MongoDB stores three types of data:
    - The Yahoo Finance API is rate-limiting your requests
    - The app will automatically use fallback data
    - Wait a few minutes before making more requests
+   - or upgrade the yfinance's version
 
 2. **MongoDB Connection Issues**:
    - Ensure MongoDB is running on your system

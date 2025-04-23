@@ -27,7 +27,7 @@ load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 app = Flask(__name__)
-CORS(app,origins=["http://localhost:5000","http://localhost:3000", "https://your-production-url.com"])
+CORS(app,origins=["http://localhost:5000","http://localhost:3000", "https://stockmarketanalyzer-qivp.onrender.com"])
 
 # MongoDB setup
 client = pymongo.MongoClient(os.getenv("MONGO_URI", "mongodb://localhost:27017/"))

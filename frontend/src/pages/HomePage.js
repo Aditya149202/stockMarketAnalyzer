@@ -15,6 +15,8 @@ import StockCard from '../components/StockCard';
 
 const defaultStocks = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META'];
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [featuredStocks, setFeaturedStocks] = useState([]);
@@ -27,7 +29,7 @@ const HomePage = () => {
       try {
         // Fetch data for default stocks
         const stockPromises = defaultStocks.map(ticker => 
-          axios.get(`/api/stock-info/${ticker}`)
+          axios.get(`${API_URL}/api/stock-info/${ticker}`)
         );
         
         const results = await Promise.all(stockPromises);
@@ -38,7 +40,7 @@ const HomePage = () => {
         setFeaturedStocks(stocksData);
         
         // Fetch popular stocks from backend
-        const popularRes = await axios.get('/api/popular-stocks');
+        const popularRes = await axios.get(`${API_URL}/api/popular-stocks`);
         if (popularRes.data.success) {
           setPopularStocks(popularRes.data.data);
         }

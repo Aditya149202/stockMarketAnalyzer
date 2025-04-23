@@ -53,6 +53,8 @@ const formatNumber = (num) => {
   return `$${num?.toFixed(2)}`;
 };
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const StockPage = () => {
   const { ticker } = useParams();
   const [stockInfo, setStockInfo] = useState(null);
@@ -79,7 +81,7 @@ const StockPage = () => {
       
       try {
         // Fetch stock information
-        const infoResponse = await axios.get(`/api/stock-info/${ticker}`);
+        const infoResponse = await axios.get(`${API_URL}/api/stock-info/${ticker}`);
         if (infoResponse.data.success) {
           setStockInfo(infoResponse.data.data);
         }
@@ -99,7 +101,7 @@ const StockPage = () => {
   
   const fetchHistoricalData = async (period) => {
     try {
-      const historyResponse = await axios.get(`/api/stock-history/${ticker}?period=${period}`);
+      const historyResponse = await axios.get(`${API_URL}/api/stock-history/${ticker}?period=${period}`);
       if (historyResponse.data.success) {
         setStockHistory(historyResponse.data.data);
         setTimeRange(period);
@@ -116,7 +118,7 @@ const StockPage = () => {
   const handleAnalyze = async () => {
     setAnalysisLoading(true);
     try {
-      const response = await axios.post('/api/analyze', { ticker });
+      const response = await axios.post(`${API_URL}/api/analyze`, { ticker });
       if (response.data.success) {
         setAnalysis(response.data.data.analysis);
       }

@@ -27,7 +27,7 @@ load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 app = Flask(__name__)
-CORS(app)
+CORS(app,origins=["http://localhost:5000","http://localhost:3000", "https://your-production-url.com"])
 
 # MongoDB setup
 client = pymongo.MongoClient(os.getenv("MONGO_URI", "mongodb://localhost:27017/"))
@@ -540,7 +540,7 @@ def get_popular_stocks():
         # Get the most searched stocks
         popular_stocks = list(stocks_collection.find({}, {"ticker": 1, "info.longName": 1, "search_count": 1})
                            .sort("search_count", -1)
-                           .limit(5))
+                           .limit(6))
         
         result = []
         for stock in popular_stocks:
